@@ -1,5 +1,53 @@
 # demo-python-sqlite
 
+This project demonstrates how to use the sqlite3 module in Python for basic database operations, including creating a database, tables, and performing insert, query, update, and delete operations.
+
+
+## 功能
+
+- 創建 SQLite 資料庫
+- 建立資料表並插入資料
+- 查詢資料並顯示結果
+- 更新現有資料
+- 刪除資料
+
+## 安裝
+
+1. 安裝 Python 3.x
+2. 使用 pip 安裝 sqlite3（通常 Python 內建此模組，不需要額外安裝）
+3. 克隆此專案到本地
+4. 執行範例腳本來查看操作示範
+
+## Demo.
+
+```python
+import sqlite3
+
+# 連接到 SQLite 資料庫
+conn = sqlite3.connect('demo.db')
+cursor = conn.cursor()
+
+# 創建資料表
+cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)''')
+
+# 插入資料
+cursor.execute('''INSERT INTO users (name, age) VALUES (?, ?)''', ("Alice", 30))
+
+# 查詢資料
+cursor.execute('''SELECT * FROM users''')
+print(cursor.fetchall())
+
+# 更新資料
+cursor.execute('''UPDATE users SET age = ? WHERE name = ?''', (31, "Alice"))
+
+# 刪除資料
+cursor.execute('''DELETE FROM users WHERE name = ?''', ("Alice",))
+
+# 提交並關閉
+conn.commit()
+conn.close()
+```
+
 ## Note.
 
 以下是使用 Python 中的 `sqlite3` 庫來實作簡單的 SQLite 操作的範例：
